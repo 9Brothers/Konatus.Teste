@@ -1,0 +1,24 @@
+IF EXISTS (
+SELECT *
+    FROM INFORMATION_SCHEMA.ROUTINES
+WHERE SPECIFIC_SCHEMA = N'dbo'
+    AND SPECIFIC_NAME = N'psAeronaves'
+)
+DROP PROCEDURE dbo.psAeronaves
+GO
+CREATE PROCEDURE dbo.psAeronaves
+    @Prefix VARCHAR(6),
+    @Page INT = 0
+AS    
+    SELECT 
+        PREFIX,
+        MAX_DEPARTURE_WEIGHT,
+        MAX_LANDING_WEIGHT,
+        ACTIVE,
+        AIRCRAFT_MODEL
+    FROM dbo.Aeronaves (NOLOCK)
+    WHERE PREFIX LIKE @Prefix + '%'
+    ORDER BY PREFIX
+    OFFSET 50 * @Page ROWS
+    FETCH NEXT 50 ROWS ONLY
+GO

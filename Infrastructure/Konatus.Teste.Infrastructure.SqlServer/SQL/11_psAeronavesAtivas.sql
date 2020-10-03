@@ -1,0 +1,19 @@
+IF EXISTS (
+SELECT *
+    FROM INFORMATION_SCHEMA.ROUTINES
+WHERE SPECIFIC_SCHEMA = N'dbo'
+    AND SPECIFIC_NAME = N'psAeronavesAtivas'
+)
+DROP PROCEDURE dbo.psAeronavesAtivas
+GO
+CREATE PROCEDURE dbo.psAeronavesAtivas    
+AS
+    SELECT 
+        PREFIX,
+        MAX_DEPARTURE_WEIGHT,
+        MAX_LANDING_WEIGHT,
+        ACTIVE,
+        AIRCRAFT_MODEL
+    FROM dbo.Aeronaves (NOLOCK)
+    WHERE ACTIVE = 1        
+GO

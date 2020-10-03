@@ -1,3 +1,5 @@
+USE AircraftControl
+
 IF OBJECT_ID('dbo.ModelosAeronaves', 'U') IS NOT NULL
 DROP TABLE dbo.ModelosAeronaves
 GO
