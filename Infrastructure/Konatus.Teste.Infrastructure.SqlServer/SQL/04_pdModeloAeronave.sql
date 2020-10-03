@@ -1,3 +1,5 @@
+USE AircraftControl
+
 IF EXISTS (
 SELECT *
     FROM INFORMATION_SCHEMA.ROUTINES
@@ -11,5 +13,6 @@ CREATE PROCEDURE dbo.pdModeloAeronave
     @AlternativeCode VARCHAR(4)
 AS    
     DELETE FROM ModelosAeronaves
-    WHERE CODE = @Code OR ALTERNATIVE_CODE = @AlternativeCode    
+    WHERE @Code IS NOT NULL AND CODE = @Code OR 
+    @AlternativeCode IS NOT NULL AND ALTERNATIVE_CODE = @AlternativeCode
 GO

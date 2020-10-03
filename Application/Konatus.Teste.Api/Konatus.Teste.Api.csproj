@@ -1,5 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domain\Konatus.Teste.Domain\Konatus.Teste.Domain.csproj" />
+    <ProjectReference Include="..\Konatus.Teste.Application\Konatus.Teste.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Konatus.Teste.Infrastructure.IoC\Konatus.Teste.Infrastructure.IoC.csproj" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>

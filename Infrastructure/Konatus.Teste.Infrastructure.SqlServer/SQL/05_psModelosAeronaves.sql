@@ -1,3 +1,5 @@
+USE AircraftControl
+
 IF EXISTS (
 SELECT *
     FROM INFORMATION_SCHEMA.ROUTINES
@@ -13,10 +15,10 @@ CREATE PROCEDURE dbo.psModelosAeronaves
 AS
     
     SELECT
-        CODE, 
-        ALTERNATIVE_CODE,
-        MAX_DEPARTURE_WEIGHT,
-        MAX_LANDING_WEIGHT
+        CODE AS Code, 
+        ALTERNATIVE_CODE AS AlternativeCode,
+        MAX_DEPARTURE_WEIGHT AS MaxDepartureWeight,
+        MAX_LANDING_WEIGHT AS MaxLandingWeight
     FROM dbo.ModelosAeronaves
     WHERE CODE LIKE @Code + '%' OR ALTERNATIVE_CODE = @AlternativeCode + '%'
     ORDER BY CODE

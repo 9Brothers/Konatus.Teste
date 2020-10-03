@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Konatus.Teste.Infrastructur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Konatus.Teste.Infrastructure.SqlServer", "Infrastructure\Konatus.Teste.Infrastructure.SqlServer\Konatus.Teste.Infrastructure.SqlServer.csproj", "{CCD877D4-DB84-4475-8CFD-65D9762E322E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Konatus.Teste.Infrastructure.Excel", "Infrastructure\Konatus.Teste.Infrastructure.Excel\Konatus.Teste.Infrastructure.Excel.csproj", "{D0E17B12-9623-400F-B567-235D831A1E7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,6 +94,18 @@ Global
 		{CCD877D4-DB84-4475-8CFD-65D9762E322E}.Release|x64.Build.0 = Release|Any CPU
 		{CCD877D4-DB84-4475-8CFD-65D9762E322E}.Release|x86.ActiveCfg = Release|Any CPU
 		{CCD877D4-DB84-4475-8CFD-65D9762E322E}.Release|x86.Build.0 = Release|Any CPU
+		{D0E17B12-9623-400F-B567-235D831A1E7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0E17B12-9623-400F-B567-235D831A1E7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0E17B12-9623-400F-B567-235D831A1E7C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D0E17B12-9623-400F-B567-235D831A1E7C}.Debug|x64.Build.0 = Debug|Any CPU
+		{D0E17B12-9623-400F-B567-235D831A1E7C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D0E17B12-9623-400F-B567-235D831A1E7C}.Debug|x86.Build.0 = Debug|Any CPU
+		{D0E17B12-9623-400F-B567-235D831A1E7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0E17B12-9623-400F-B567-235D831A1E7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0E17B12-9623-400F-B567-235D831A1E7C}.Release|x64.ActiveCfg = Release|Any CPU
+		{D0E17B12-9623-400F-B567-235D831A1E7C}.Release|x64.Build.0 = Release|Any CPU
+		{D0E17B12-9623-400F-B567-235D831A1E7C}.Release|x86.ActiveCfg = Release|Any CPU
+		{D0E17B12-9623-400F-B567-235D831A1E7C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{DD20498C-689A-4D8E-B0D5-83A2DF699263} = {2130F066-ECCF-4299-A3F3-F5C10E2E2377}
@@ -99,5 +113,6 @@ Global
 		{384AE4D9-AAE0-400D-A0B5-2559650E27D8} = {66EA283A-3F32-433C-A8B8-F7854B64B4A7}
 		{45264D36-EB02-4D50-B632-49607A5B0E63} = {B059D46F-F479-4B87-9073-E89CFE63A3B3}
 		{CCD877D4-DB84-4475-8CFD-65D9762E322E} = {B059D46F-F479-4B87-9073-E89CFE63A3B3}
+		{D0E17B12-9623-400F-B567-235D831A1E7C} = {B059D46F-F479-4B87-9073-E89CFE63A3B3}
 	EndGlobalSection
 EndGlobal

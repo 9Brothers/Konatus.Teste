@@ -4,6 +4,7 @@
         "konatus",
         "mssql",
         "nodeport",
+        "spreadsheetml",
         "sqlserver"
     ]
 }

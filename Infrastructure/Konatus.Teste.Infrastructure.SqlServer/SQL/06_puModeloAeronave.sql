@@ -1,3 +1,5 @@
+USE AircraftControl
+
 IF EXISTS (
 SELECT *
     FROM INFORMATION_SCHEMA.ROUTINES
@@ -9,8 +11,8 @@ GO
 CREATE PROCEDURE dbo.puModeloAeronave
     @Code VARCHAR(4),
     @AlternativeCode VARCHAR(4),
-    @MaxDepartureWeight DECIMAL(7,3),
-    @MaxLandingWeight DECIMAL(7,3)
+    @MaxDepartureWeight DECIMAL(10,3),
+    @MaxLandingWeight DECIMAL(10,3)
 AS    
     UPDATE ModelosAeronaves
     SET        

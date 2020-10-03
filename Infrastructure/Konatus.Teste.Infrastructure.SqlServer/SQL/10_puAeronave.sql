@@ -1,3 +1,5 @@
+USE AircraftControl
+
 IF EXISTS (
 SELECT *
     FROM INFORMATION_SCHEMA.ROUTINES
@@ -8,8 +10,8 @@ DROP PROCEDURE dbo.puAeronave
 GO
 CREATE PROCEDURE dbo.puAeronave
     @Prefix VARCHAR(6),
-    @MaxDepartureWeight DECIMAL(7, 3),
-    @MaxLandingWeight  DECIMAL(7, 3),
+    @MaxDepartureWeight DECIMAL(10, 3),
+    @MaxLandingWeight  DECIMAL(10, 3),
     @Active BIT,
     @AircraftModel VARCHAR(4)
 AS        

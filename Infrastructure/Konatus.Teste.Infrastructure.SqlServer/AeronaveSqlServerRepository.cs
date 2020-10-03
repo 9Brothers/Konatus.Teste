@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Konatus.Teste.Domain.Entities;
@@ -14,7 +15,12 @@ namespace Konatus.Teste.Infrastructure.SqlServer
 
         public override async Task<string> Add(Aeronave entity)
         {
-            Params = entity;
+            Params = new {
+                entity.Prefix,
+                entity.MaxDepartureWeight,
+                entity.MaxLandingWeight,
+                entity.AircraftModel
+            };
             ProcedureName = "piAeronave";
 
             return await base.Add(entity);
@@ -22,10 +28,16 @@ namespace Konatus.Teste.Infrastructure.SqlServer
 
         public override async Task<int> Delete(Aeronave entity)
         {
-            Params = entity;
+            Params = new {
+                entity.Prefix
+            };
             ProcedureName = "pdAeronave";
 
-            return await base.Delete(entity);
+            var affectedRows = await base.Update(entity);
+
+            if (affectedRows <= 0) throw new Exception("Registro não removido");
+
+            return affectedRows;
         }
 
         public override async Task<IEnumerable<Aeronave>> Get(Aeronave entity, int page = 0)
@@ -52,7 +64,11 @@ namespace Konatus.Teste.Infrastructure.SqlServer
             Params = entity;
             ProcedureName = "puAeronave";
 
-            return await base.Update(entity);
+            var affectedRows = await base.Update(entity);
+
+            if (affectedRows <= 0) throw new Exception("Registro não atualizado");
+
+            return affectedRows;
         }
     }
 }

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Konatus.Teste.Domain.Interfaces.Services
+namespace Konatus.Teste.Application.Interfaces
 {
-    public interface IService<T> where T : class
+    public interface IAppService<T> where T : class
     {
         Task<T> Add(T entity);
         Task Update(T entity);

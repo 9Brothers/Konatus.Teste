@@ -1,5 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <ItemGroup>    
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.0" />    
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Application\Konatus.Teste.Application\Konatus.Teste.Application.csproj" />
+    <ProjectReference Include="..\..\Domain\Konatus.Teste.Domain\Konatus.Teste.Domain.csproj" />
+    <ProjectReference Include="..\Konatus.Teste.Infrastructure.SqlServer\Konatus.Teste.Infrastructure.SqlServer.csproj" />
+    <ProjectReference Include="..\Konatus.Teste.Infrastructure.Excel\Konatus.Teste.Infrastructure.Excel.csproj" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>

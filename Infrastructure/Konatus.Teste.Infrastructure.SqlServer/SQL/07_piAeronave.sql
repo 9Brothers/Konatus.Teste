@@ -10,8 +10,8 @@ DROP PROCEDURE dbo.piAeronave
 GO
 CREATE PROCEDURE dbo.piAeronave
     @Prefix VARCHAR(6),
-    @MaxDepartureWeight DECIMAL(7,3),
-    @MaxLandingWeight DECIMAL(7,3),
+    @MaxDepartureWeight DECIMAL(10,3),
+    @MaxLandingWeight DECIMAL(10,3),
     @AircraftModel VARCHAR(4)
 AS
     
@@ -26,7 +26,4 @@ AS
     GO
 
     SELECT SCOPE_IDENTITY()
-GO
--- example to execute the stored procedure we just created
-EXECUTE dbo.piAeronave 1 /*value_for_param1*/, 2 /*value_for_param2*/
 GO

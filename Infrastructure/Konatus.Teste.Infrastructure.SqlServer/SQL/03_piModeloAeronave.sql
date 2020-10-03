@@ -12,8 +12,8 @@ GO
 CREATE PROCEDURE dbo.piModeloAeronave
     @Code VARCHAR(4),
     @AlternativeCode VARCHAR(4),
-    @MaxDepartureWeight DECIMAL(7,3),
-    @MaxLandingWeight DECIMAL(7,3)
+    @MaxDepartureWeight DECIMAL(10,3),
+    @MaxLandingWeight DECIMAL(10,3)
 AS    
     INSERT INTO ModelosAeronaves
     (
