@@ -1,11 +1,11 @@
 ﻿using System;
 using Konatus.Teste.Application;
 using Konatus.Teste.Application.Interfaces;
-using Konatus.Teste.Domain.Interfaces.Repositories.Excel;
+using Konatus.Teste.Domain.Interfaces.Repositories.Files;
 using Konatus.Teste.Domain.Interfaces.Repositories.SqlServer;
 using Konatus.Teste.Domain.Interfaces.Services;
 using Konatus.Teste.Domain.Services;
-using Konatus.Teste.Infrastructure.Excel;
+using Konatus.Teste.Infrastructure.Files;
 using Konatus.Teste.Infrastructure.SqlServer;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -27,8 +27,9 @@ namespace Konatus.Teste.Infrastructure.IoC
             services.AddScoped<IModeloAeronaveSqlServerRepository, ModeloAeronaveSqlServerRepository>();
             services.AddScoped<IAeronaveSqlServerRepository, AeronaveSqlServerRepository>();
 
-            // * Excel Repositories
-            services.AddScoped(typeof(IExcelRepository<>), typeof(ExcelRepository<>));
+            // * Files Repositories
+            services.AddScoped(typeof(IExcelRepository<>), typeof(ExcelRepository<>));            
+            services.AddScoped<IAeronaveCsvRepository, AeronaveCsvRepository>();
         }
     }
 }

@@ -12,7 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Konatus.Teste.Api
+namespace Konatus.Teste.Application.Api
 {
     public class Startup
     {

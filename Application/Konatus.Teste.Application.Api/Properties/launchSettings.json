@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Konatus.Teste.Api": {
+    "Konatus.Teste.Application.Api": {
       "commandName": "Project",
       "launchBrowser": true,      
       "applicationUrl": "http://localhost:5000",

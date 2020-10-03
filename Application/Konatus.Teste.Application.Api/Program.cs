@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Konatus.Teste.Api
+namespace Konatus.Teste.Application.Api
 {
     public class Program
     {

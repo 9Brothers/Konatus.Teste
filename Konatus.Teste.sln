@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{2130F066-ECCF-4299-A3F3-F5C10E2E2377}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Konatus.Teste.Api", "Application\Konatus.Teste.Api\Konatus.Teste.Api.csproj", "{DD20498C-689A-4D8E-B0D5-83A2DF699263}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Konatus.Teste.Application.Api", "Application\Konatus.Teste.Application.Api\Konatus.Teste.Application.Api.csproj", "{DD20498C-689A-4D8E-B0D5-83A2DF699263}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Konatus.Teste.Application", "Application\Konatus.Teste.Application\Konatus.Teste.Application.csproj", "{8B310538-6E22-44DC-8BF3-895604C209DF}"
 EndProject
@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Konatus.Teste.Infrastructur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Konatus.Teste.Infrastructure.SqlServer", "Infrastructure\Konatus.Teste.Infrastructure.SqlServer\Konatus.Teste.Infrastructure.SqlServer.csproj", "{CCD877D4-DB84-4475-8CFD-65D9762E322E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Konatus.Teste.Infrastructure.Excel", "Infrastructure\Konatus.Teste.Infrastructure.Excel\Konatus.Teste.Infrastructure.Excel.csproj", "{D0E17B12-9623-400F-B567-235D831A1E7C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Konatus.Teste.Infrastructure.Files", "Infrastructure\Konatus.Teste.Infrastructure.Files\Konatus.Teste.Infrastructure.Files.csproj", "{D0E17B12-9623-400F-B567-235D831A1E7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.IO;
 using ClosedXML.Excel;
-using Konatus.Teste.Domain.Interfaces.Repositories.Excel;
+using Konatus.Teste.Domain.Interfaces.Repositories.Files;
 
-namespace Konatus.Teste.Infrastructure.Excel
+namespace Konatus.Teste.Infrastructure.Files
 {
     public class ExcelRepository<T> : IExcelRepository<T> where T : class
     {
@@ -45,6 +45,6 @@ namespace Konatus.Teste.Infrastructure.Excel
                     return stream;
                 }
             }
-        }
+        }        
     }
 }

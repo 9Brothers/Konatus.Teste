@@ -8,7 +8,7 @@
     <ProjectReference Include="..\..\Application\Konatus.Teste.Application\Konatus.Teste.Application.csproj" />
     <ProjectReference Include="..\..\Domain\Konatus.Teste.Domain\Konatus.Teste.Domain.csproj" />
     <ProjectReference Include="..\Konatus.Teste.Infrastructure.SqlServer\Konatus.Teste.Infrastructure.SqlServer.csproj" />
-    <ProjectReference Include="..\Konatus.Teste.Infrastructure.Excel\Konatus.Teste.Infrastructure.Excel.csproj" />
+    <ProjectReference Include="..\Konatus.Teste.Infrastructure.Files\Konatus.Teste.Infrastructure.Files.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

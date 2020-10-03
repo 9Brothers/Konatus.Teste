@@ -4,7 +4,7 @@ using Konatus.Teste.Application.Interfaces;
 using Konatus.Teste.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Konatus.Teste.Api.Controllers
+namespace Konatus.Teste.Application.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]

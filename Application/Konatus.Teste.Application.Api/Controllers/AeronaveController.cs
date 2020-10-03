@@ -1,23 +1,30 @@
 using System;
+using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using Konatus.Teste.Application.Interfaces;
 using Konatus.Teste.Domain.Entities;
-using Konatus.Teste.Domain.Interfaces.Repositories.Excel;
+using Konatus.Teste.Domain.Interfaces.Repositories.Files;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Konatus.Teste.Api.Controllers
+namespace Konatus.Teste.Application.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
     public class AeronaveController : ControllerBase
     {
         protected readonly IAeronaveAppService _aeronaveAppService;
+        protected readonly IModeloAeronaveAppService _modeloAeronaveAppService;
         protected readonly IExcelRepository<Aeronave> _excelRepository;
+        protected readonly IAeronaveCsvRepository _aeronaveCsvRepository;
 
-        public AeronaveController(IAeronaveAppService aeronaveAppService, IExcelRepository<Aeronave> excelRepository)
+        public AeronaveController(IAeronaveAppService aeronaveAppService, IExcelRepository<Aeronave> excelRepository, IAeronaveCsvRepository aeronaveCsvRepository, IModeloAeronaveAppService modeloAeronaveAppService)
         {
             _aeronaveAppService = aeronaveAppService;
             _excelRepository = excelRepository;
+            _aeronaveCsvRepository = aeronaveCsvRepository;
+            _modeloAeronaveAppService = modeloAeronaveAppService;
         }
 
         [HttpGet]
@@ -34,7 +41,7 @@ namespace Konatus.Teste.Api.Controllers
 #if DEBUG
                 return BadRequest(ex.InnerException?.Message ?? ex.Message);
 #else
-                return BadRequest("Não foi possível buscar aeronaves.")
+                return BadRequest("Não foi possível buscar aeronaves.");
 #endif                                
             }
         }
@@ -58,7 +65,7 @@ namespace Konatus.Teste.Api.Controllers
 #if DEBUG
                 return BadRequest(ex.InnerException?.Message ?? ex.Message);
 #else
-                return BadRequest("Não foi possível buscar as aeronaves ativas.")
+                return BadRequest("Não foi possível buscar as aeronaves ativas.");
 #endif                                
             }
         }
@@ -77,7 +84,41 @@ namespace Konatus.Teste.Api.Controllers
 #if DEBUG
                 return BadRequest(ex.InnerException?.Message ?? ex.Message);
 #else
-                return BadRequest("Não foi possível adicionar a aeronave.")
+                return BadRequest("Não foi possível adicionar a aeronave.");
+#endif                                
+            }
+        }
+
+        [HttpPost("Import")]
+        public async Task<IActionResult> Import([FromForm] IFormFile file)
+        {
+            try
+            {
+                if (file == null) throw new Exception("Selecione um arquivo.");
+
+                using (var stream = file.OpenReadStream())
+                {
+                    var aircraftTuple = await _aeronaveCsvRepository.Convert(stream);
+
+                    foreach (var aircraftModel in aircraftTuple.aircraftsModels)
+                    {
+                        await _modeloAeronaveAppService.Add(aircraftModel);
+                    }
+
+                    foreach (var aircraft in aircraftTuple.aircrafts)
+                    {
+                        await _aeronaveAppService.Add(aircraft);
+                    }
+
+                    return Ok();
+                }
+            }
+            catch (Exception ex)
+            {
+#if DEBUG
+                return BadRequest(ex.InnerException?.Message ?? ex.Message);
+#else
+                return BadRequest("Não foi possível importar as aeronaves.");
 #endif                                
             }
         }
@@ -96,7 +137,7 @@ namespace Konatus.Teste.Api.Controllers
 #if DEBUG
                 return BadRequest(ex.InnerException?.Message ?? ex.Message);
 #else
-                return BadRequest("Não foi possível atualizar a aeronave.")
+                return BadRequest("Não foi possível atualizar a aeronave.");
 #endif                                
             }
         }
@@ -115,7 +156,7 @@ namespace Konatus.Teste.Api.Controllers
 #if DEBUG
                 return BadRequest(ex.InnerException?.Message ?? ex.Message);
 #else
-                return BadRequest("Não foi possível deletar a aeronave.")
+                return BadRequest("Não foi possível deletar a aeronave.");
 #endif
             }
         }
