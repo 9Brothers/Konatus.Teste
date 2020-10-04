@@ -1,10 +1,21 @@
 {
-    "cSpell.words": [
-        "clusterip",
-        "konatus",
-        "mssql",
-        "nodeport",
-        "spreadsheetml",
-        "sqlserver"
-    ]
+  "cSpell.words": [
+    "clusterip",
+    "devkit",
+    "konatus",
+    "mssql",
+    "nodeport",
+    "spreadsheetml",
+    "sqlserver"
+  ],
+  "[html]": {
+    "editor.suggest.insertMode": "replace",
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.suggest.insertMode": "replace",
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

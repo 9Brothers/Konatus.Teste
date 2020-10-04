@@ -53,6 +53,25 @@ namespace Konatus.Teste.Application.Api.Controllers
             {
                 var aeronaves = await _aeronaveAppService.GetActives();
 
+                return Ok(aeronaves);
+            }
+            catch (Exception ex)
+            {
+#if DEBUG
+                return BadRequest(ex.InnerException?.Message ?? ex.Message);
+#else
+                return BadRequest("Não foi possível buscar as aeronaves ativas.");
+#endif                                
+            }
+        }
+
+        [HttpGet("Actives/Excel")]
+        public async Task<IActionResult> GetActivesExcel()
+        {
+            try
+            {
+                var aeronaves = await _aeronaveAppService.GetActives();
+
                 var stream = _excelRepository.Export(aeronaves);
 
                 return File(

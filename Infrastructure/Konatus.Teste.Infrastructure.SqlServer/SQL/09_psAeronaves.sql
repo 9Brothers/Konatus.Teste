@@ -13,11 +13,11 @@ CREATE PROCEDURE dbo.psAeronaves
     @Page INT = 0
 AS    
     SELECT 
-        PREFIX,
-        MAX_DEPARTURE_WEIGHT,
-        MAX_LANDING_WEIGHT,
-        ACTIVE,
-        AIRCRAFT_MODEL
+        PREFIX AS Prefix,
+        MAX_DEPARTURE_WEIGHT AS MaxDepartureWeight,
+        MAX_LANDING_WEIGHT AS MaxLandingWeight,
+        ACTIVE AS Active,
+        AIRCRAFT_MODEL AS AircraftModel
     FROM dbo.Aeronaves (NOLOCK)
     WHERE PREFIX LIKE @Prefix + '%'
     ORDER BY PREFIX

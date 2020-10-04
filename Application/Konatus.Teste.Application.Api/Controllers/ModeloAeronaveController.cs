@@ -36,6 +36,25 @@ namespace Konatus.Teste.Application.Api.Controllers
             }
         }
 
+        [HttpGet("All")]
+        public async Task<IActionResult> All(string code, string alternativeCode, int page = 0)
+        {
+            try
+            {
+                var aeronaves = await _modeloAeronaveAppService.GetAll();
+
+                return Ok(aeronaves);
+            }
+            catch (Exception ex)
+            {
+#if DEBUG
+                return BadRequest(ex.InnerException?.Message ?? ex.Message);
+#else
+                return BadRequest("Não foi possível buscar modelos de aeronaves.")
+#endif                                
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] ModeloAeronave modeloAeronave)
         {

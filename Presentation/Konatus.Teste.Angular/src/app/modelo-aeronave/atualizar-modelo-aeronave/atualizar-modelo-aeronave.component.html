@@ -1,0 +1,128 @@
+<div id="atualizar-modelo-aeronave">
+  <form [formGroup]="updateAircraftModelFormGroup" (ngSubmit)="save()" novalidate>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Aircraft Model</mat-card-title>
+        <mat-card-subtitle>Aircraft model update</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div id="code-alternative">
+          <div id="code">
+            <!-- Code -->
+            <mat-form-field>
+              <mat-label>Code</mat-label>
+              <input
+                matInput
+                placeholder=""
+                value=""
+                type="text"
+                formControlName="code"
+              />
+
+              <mat-error *ngIf="code.hasError('required')">
+                Please enter a code.
+              </mat-error>
+              <mat-error *ngIf="code.hasError('maxlength')">
+                Enter a code of a maximum of 4 characters.
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div id="alternative-code">
+            <!-- Alternative code -->
+            <mat-form-field>
+              <mat-label>Alternative code</mat-label>
+              <input
+                matInput
+                placeholder=""
+                value=""
+                type="text"
+                formControlName="alternativeCode"
+              />
+
+              <mat-error
+                *ngIf="alternativeCode.hasError('required')"
+              >
+                Please enter a alternative code.
+              </mat-error>
+              <mat-error
+                *ngIf="alternativeCode.hasError('maxlength')"
+              >
+                Enter a alternative code of a maximum of 4 characters.
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div id="departure-landing">
+          <div id="departure">
+            <!-- Max Departure Weight -->
+            <mat-form-field>
+              <mat-label>Max Departure Weight</mat-label>
+
+              <input
+                matInput
+                placeholder=""
+                value=""
+                type="number"
+                formControlName="maxDepartureWeight"
+              />
+
+              <mat-error *ngIf="maxDepartureWeight.hasError('required')">
+                Please enter a max departure weight.
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  maxDepartureWeight.hasError('max') ||
+                  maxDepartureWeight.hasError('min')
+                "
+              >
+                Enter a max departure weight between 0 and 999999.
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div id="landing">
+            <!-- Max Landing Weight -->
+            <mat-form-field>
+              <mat-label>Max Landing Weight</mat-label>
+              <input
+                matInput
+                placeholder=""
+                value=""
+                type="number"
+                formControlName="maxLandingWeight"
+              />
+
+              <mat-error *ngIf="maxLandingWeight.hasError('required')">
+                Please enter a max landing weight.
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  maxLandingWeight.hasError('max') ||
+                  maxLandingWeight.hasError('min')
+                "
+              >
+                Enter a max landing weight between 0 and 999999.
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          id="btn-voltar"
+          mat-button
+          color="primary"
+          (click)="back()"
+          type="button"
+        >
+          Back
+        </button>
+        <button id="btn-salvar" mat-raised-button color="primary" type="submit">
+          Save
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

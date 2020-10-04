@@ -47,7 +47,14 @@ namespace Konatus.Teste.Infrastructure.SqlServer
 
             return await base.Get(entity, page);
         }
-        
+
+        public async Task<IEnumerable<ModeloAeronave>> GetAll()
+        {
+            ProcedureName = "psTodosModelosAeronaves";
+
+            return await base.Get(null, 0);
+        }
+
         public override async Task<int> Update(ModeloAeronave entity)
         {
             Params = entity;

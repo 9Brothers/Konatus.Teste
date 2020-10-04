@@ -1,0 +1,138 @@
+<div id="cadastro-aeronave">
+  <form [formGroup]="registerAircraftFormGroup" (ngSubmit)="save()" novalidate>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Aircraft</mat-card-title>
+        <mat-card-subtitle>Aircraft update</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div id="model-prefix">
+          <div id="alternative-code">
+            <!-- Aircraft Model -->
+            <mat-form-field>
+              <mat-label>Aircraft model</mat-label>
+              <input
+                matInput
+                aria-label="Number"
+                type="text"
+                formControlName="aircraftModel"
+                [matAutocomplete]="auto"
+              />
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option
+                  *ngFor="let option of filteredOptions | async"
+                  [value]="option.code"
+                >
+                  {{ option.code }}
+                </mat-option>
+              </mat-autocomplete>
+
+              <mat-error *ngIf="aircraftModel.hasError('required')">
+                Please enter a aircraft model.
+              </mat-error>
+              <mat-error *ngIf="aircraftModel.hasError('maxlength')">
+                Enter a aircraft model of a maximum of 4 characters.
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div id="prefix">
+            <!-- Prefix -->
+            <mat-form-field>
+              <mat-label>Prefix</mat-label>
+              <input
+                matInput
+                placeholder=""
+                value=""
+                type="text"
+                formControlName="prefix"
+              />
+
+              <mat-error *ngIf="prefix.hasError('required')">
+                Please enter a prefix.
+              </mat-error>
+              <mat-error *ngIf="prefix.hasError('maxlength')">
+                Enter a prefix of a maximum of 6 characters.
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div id="departure-landing">
+          <div id="departure">
+            <!-- Max Departure Weight -->
+            <mat-form-field>
+              <mat-label>Max Departure Weight</mat-label>
+
+              <input
+                matInput
+                placeholder=""
+                value=""
+                type="number"
+                formControlName="maxDepartureWeight"
+              />
+
+              <mat-error *ngIf="maxDepartureWeight.hasError('required')">
+                Please enter a max departure weight.
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  maxDepartureWeight.hasError('max') ||
+                  maxDepartureWeight.hasError('min')
+                "
+              >
+                Enter a max departure weight between 0 and 999999.
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div id="landing">
+            <!-- Max Landing Weight -->
+            <mat-form-field>
+              <mat-label>Max Landing Weight</mat-label>
+              <input
+                matInput
+                placeholder=""
+                value=""
+                type="number"
+                formControlName="maxLandingWeight"
+              />
+
+              <mat-error *ngIf="maxLandingWeight.hasError('required')">
+                Please enter a max landing weight.
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  maxLandingWeight.hasError('max') ||
+                  maxLandingWeight.hasError('min')
+                "
+              >
+                Enter a max landing weight between 0 and 999999.
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div>
+          <mat-slide-toggle formControlName="active" color="primary">
+            Active
+          </mat-slide-toggle>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          id="btn-voltar"
+          mat-button
+          color="primary"
+          (click)="back()"
+          type="button"
+        >
+          Back
+        </button>
+        <button id="btn-salvar" mat-raised-button color="primary" type="submit">
+          Save
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

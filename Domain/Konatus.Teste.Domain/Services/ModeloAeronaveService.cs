@@ -32,6 +32,11 @@ namespace Konatus.Teste.Domain.Services
             return await _modeloAeronaveSqlServerRepository.Get(entity, page);
         }
 
+        public async Task<IEnumerable<ModeloAeronave>> GetAll()
+        {
+            return await _modeloAeronaveSqlServerRepository.GetAll();
+        }
+
         public async Task Update(ModeloAeronave entity)
         {
             await _modeloAeronaveSqlServerRepository.Update(entity);

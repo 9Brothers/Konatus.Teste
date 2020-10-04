@@ -26,9 +26,16 @@ namespace Konatus.Teste.Application.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-
             Injector.Inject(services);
+
+            services.AddCors(options => 
+                options.AddDefaultPolicy(policy => 
+                    policy.AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowAnyOrigin()
+            ));
+
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,9 +46,11 @@ namespace Konatus.Teste.Application.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 
@@ -49,6 +58,8 @@ namespace Konatus.Teste.Application.Api
             {
                 endpoints.MapControllers();
             });
+
+            
         }
     }
 }

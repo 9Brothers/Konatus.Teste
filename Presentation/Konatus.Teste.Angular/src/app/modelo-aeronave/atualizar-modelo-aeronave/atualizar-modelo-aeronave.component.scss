@@ -1,0 +1,50 @@
+#atualizar-modelo-aeronave {
+  width: calc(100vw - 40px);
+  margin: auto;
+  padding-top: 20px;
+
+  #code-alternative,
+  #departure-landing {
+    margin-left: 10px;
+  }
+
+  #code,
+  #alternative-code,
+  #departure,
+  #landing {
+    width: 50%;
+    display: inline-block;
+    vertical-align: middle;
+
+    mat-form-field {
+      width: calc(100% - 10px);
+      margin: 0 auto;
+    }    
+  }
+
+  #btn-salvar {
+    float: right;
+  }
+
+  
+}
+
+@media screen and (max-width: 360px) {
+  
+  #atualizar-modelo-aeronave {
+    width: calc(100vw - 20px);
+    padding-top: 10px;
+
+    #code,
+    #alternative-code,
+    #departure,
+    #landing {
+      width: 100%;
+      
+      mat-form-field {
+        width: calc(100% - 10px);
+        margin: 0 auto;
+      }
+    }
+  }
+}

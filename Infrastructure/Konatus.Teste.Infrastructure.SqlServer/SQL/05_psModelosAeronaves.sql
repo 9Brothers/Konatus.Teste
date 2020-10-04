@@ -19,7 +19,7 @@ AS
         ALTERNATIVE_CODE AS AlternativeCode,
         MAX_DEPARTURE_WEIGHT AS MaxDepartureWeight,
         MAX_LANDING_WEIGHT AS MaxLandingWeight
-    FROM dbo.ModelosAeronaves
+    FROM dbo.ModelosAeronaves (NOLOCK)
     WHERE CODE LIKE @Code + '%' OR ALTERNATIVE_CODE = @AlternativeCode + '%'
     ORDER BY CODE
     OFFSET 50 * @Page ROWS

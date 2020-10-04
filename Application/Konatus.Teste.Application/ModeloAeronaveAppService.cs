@@ -46,6 +46,11 @@ namespace Konatus.Teste.Application
             return await _modeloAeronaveService.Get(entity, page);
         }
 
+        public async Task<IEnumerable<ModeloAeronave>> GetAll()
+        {
+            return await _modeloAeronaveService.GetAll();
+        }
+
         public async Task Update(ModeloAeronave entity)
         {
             if (string.IsNullOrEmpty(entity?.Code?.Trim()) || entity.Code.Length == 0) throw new Exception("Informe o CODE.");
