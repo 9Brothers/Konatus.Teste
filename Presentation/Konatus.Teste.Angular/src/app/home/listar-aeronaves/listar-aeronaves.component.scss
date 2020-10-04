@@ -1,0 +1,25 @@
+#listar-aeronaves {
+  width: calc(100% - 40px);
+  padding-top: 20px;
+  margin: 0 auto;
+
+  #add-aircraft {
+    margin-bottom: 20px;
+  }
+
+  table {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  #listar-aeronaves {
+    width: calc(100% - 20px);
+    padding-top: 10px;
+    margin: 0 auto;
+
+    #add-aircraft {
+      margin-bottom: 10px;
+    }
+  }
+}

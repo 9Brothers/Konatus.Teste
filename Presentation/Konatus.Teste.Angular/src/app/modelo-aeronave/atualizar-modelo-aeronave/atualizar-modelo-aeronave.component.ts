@@ -3,6 +3,7 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ajax } from 'rxjs/ajax';
+import { AircraftModelService } from 'src/app/services/aircraft-model.service';
 import { AircraftModel } from 'src/entities/aircraft-model';
 import { environment } from 'src/environments/environment';
 
@@ -12,6 +13,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./atualizar-modelo-aeronave.component.scss']
 })
 export class AtualizarModeloAeronaveComponent implements OnInit {
+
+  codeParam: string = '';
 
   code = new FormControl('', [
     Validators.required,
@@ -44,21 +47,16 @@ export class AtualizarModeloAeronaveComponent implements OnInit {
     maxLandingWeight: this.maxLandingWeight,
   });
 
-  constructor(private _router: Router, private _route: ActivatedRoute, private _snackBar: MatSnackBar) { }
+  constructor(private _aircraftModelService: AircraftModelService, private _router: Router, private _route: ActivatedRoute, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this._route.params.subscribe(params => {
 
-      let code = params['code'];
+      this.codeParam = params['code'];
 
-      ajax({
-        url: `${environment.baseUrl}/ModeloAeronave?code=${code}`,
-        method: 'GET',
-        headers: { 'Accept': 'application/json' }
-      })
-        .toPromise()
+      this._aircraftModelService.get(this.codeParam)
         .then(response => {
-          let aircraftModel = response.response[0] as AircraftModel;
+          let aircraftModel = response[0];
 
           this.code.setValue(aircraftModel.code);
           this.alternativeCode.setValue(aircraftModel.alternativeCode);
@@ -82,24 +80,26 @@ export class AtualizarModeloAeronaveComponent implements OnInit {
       aircraftModel.maxDepartureWeight = this.updateAircraftModelFormGroup.get('maxDepartureWeight').value;
       aircraftModel.maxLandingWeight = this.updateAircraftModelFormGroup.get('maxLandingWeight').value;
 
-      ajax({
-        url: `${environment.baseUrl}/ModeloAeronave`,
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: aircraftModel
-      })
-        .toPromise()
+      this._aircraftModelService.update(aircraftModel)
         .then(() => this._router.navigateByUrl('/'))
-        .catch(err => {
-          console.error(err)
-          
-          this._snackBar.open('The aircraft model could not be updated', null, { duration: 3000 })
-        });
+        .catch(this.catch);
     }
+  }
+
+  delete() {
+    this._aircraftModelService.delete(this.codeParam)
+      .then(() => this._router.navigateByUrl('/'))
+      .catch(this.catch);
   }
 
   back() {
     window.history.back();
+  }
+
+  catch = (err) => {
+    console.error(err)
+
+    this._snackBar.open('The aircraft model could not be updated', null, { duration: 3000 })
   }
 
 }

@@ -1,0 +1,52 @@
+<div id="listar-aeronaves">
+  <div id="add-aircraft">
+    <a mat-raised-button color="primary" routerLink="/aircraft/register">Add new aircraft</a>
+  </div>
+
+  <div>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Aircraft list</mat-card-title>
+        <mat-card-subtitle>Double-click the row to edit the record.</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field>
+          <mat-label>Search</mat-label>
+          <input matInput (keyup)="applyFilter($event)">
+        </mat-form-field>
+        <table mat-table #table [dataSource]="dataSource">
+
+          <ng-container matColumnDef="prefix">
+            <th mat-header-cell *matHeaderCellDef> Prefix </th>
+            <td mat-cell *matCellDef="let row"> {{row.prefix}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="maxDepartureWeight">
+            <th mat-header-cell *matHeaderCellDef> Max Departure Weight </th>
+            <td mat-cell *matCellDef="let row"> {{row.maxDepartureWeight}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="maxLandingWeight">
+            <th mat-header-cell *matHeaderCellDef> Max Landing Weight </th>
+            <td mat-cell *matCellDef="let row"> {{row.maxLandingWeight}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="aircraftModel">
+            <th mat-header-cell *matHeaderCellDef> Aircraft Model </th>
+            <td mat-cell *matCellDef="let row"> {{row.aircraftModel}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="active">
+            <th mat-header-cell *matHeaderCellDef> Active </th>
+            <td mat-cell *matCellDef="let row"> {{row.active ? 'Yes' : 'No' }} </td>
+          </ng-container>
+    
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row (dblclick)="edit(row)" (touchend)="edit(row)" *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    
+        <mat-paginator [pageSizeOptions]="[5]" (page)="onPageFired($event)"></mat-paginator>
+      </mat-card-content>      
+    </mat-card>
+  </div>
+</div>

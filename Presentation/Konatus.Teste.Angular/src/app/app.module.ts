@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { CadastroAeronaveComponent } from './aeronave/cadastro-aeronave/cadastro-aeronave.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 
 // * Material Modules
 import { MatCardModule } from "@angular/material/card";
@@ -21,6 +22,11 @@ import { MatGridListModule } from "@angular/material/grid-list";
 import { AtualizarModeloAeronaveComponent } from './modelo-aeronave/atualizar-modelo-aeronave/atualizar-modelo-aeronave.component';
 import { AtualizarAeronaveComponent } from './aeronave/atualizar-aeronave/atualizar-aeronave.component';
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { ListarAeronavesComponent } from './home/listar-aeronaves/listar-aeronaves.component';
+import { MatTableModule } from "@angular/material/table";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { ListarModelosAeronavesComponent } from './home/listar-modelos-aeronaves/listar-modelos-aeronaves.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +34,10 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
     CadastroAeronaveComponent,
     CadastroModeloAeronaveComponent,
     AtualizarModeloAeronaveComponent,
-    AtualizarAeronaveComponent
+    AtualizarAeronaveComponent,
+    ListarAeronavesComponent,
+    ListarModelosAeronavesComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +45,9 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
+
+    // * Material
     MatCardModule,
     MatButtonModule,
     MatFormFieldModule,
@@ -44,7 +56,9 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
     MatDividerModule,
     MatSnackBarModule,
     MatGridListModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }

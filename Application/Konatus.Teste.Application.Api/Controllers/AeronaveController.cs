@@ -32,7 +32,7 @@ namespace Konatus.Teste.Application.Api.Controllers
         {
             try
             {
-                var aeronaves = await _aeronaveAppService.Get(new Aeronave { Prefix = prefix }, page);
+                var aeronaves = await _aeronaveAppService.Get(new Aeronave { Prefix = prefix ?? "" }, page);
 
                 return Ok(aeronaves);
             }

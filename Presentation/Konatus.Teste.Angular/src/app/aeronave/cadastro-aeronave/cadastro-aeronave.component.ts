@@ -3,12 +3,11 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ajax } from 'rxjs/ajax';
 import { map, startWith } from "rxjs/operators";
+import { AircraftModelService } from 'src/app/services/aircraft-model.service';
+import { AircraftService } from 'src/app/services/aircraft.service';
 import { Aircraft } from 'src/entities/aircraft';
 import { AircraftModel } from 'src/entities/aircraft-model';
-import { environment } from 'src/environments/environment';
-
 
 @Component({
   selector: 'app-cadastro-aeronave',
@@ -49,28 +48,23 @@ export class CadastroAeronaveComponent implements OnInit {
     maxLandingWeight: this.maxLandingWeight
   });
 
-  constructor(private _router: Router, private _snackBar: MatSnackBar) { }
+  constructor(private _aircraftService: AircraftService, private _aircraftModelService: AircraftModelService, private _router: Router, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    ajax({
-      url: `${environment.baseUrl}/ModeloAeronave/All`,
-      method: 'GET',
-      headers: { 'Accept': 'application/json' }
-    })
-    .toPromise()
-    .then(response => {
-      this.aircraftModels = response.response;
+    this._aircraftModelService.getAll()
+      .then(response => {
+        this.aircraftModels = response;
 
-      this.filteredOptions = this.aircraftModel.valueChanges.pipe(
-        startWith(''),
-        map(value => this._filter(value))
-      );
-    })
-    .catch(err => {
-      console.error(err);
+        this.filteredOptions = this.aircraftModel.valueChanges.pipe(
+          startWith(''),
+          map(value => this._filter(value))
+        );
+      })
+      .catch(err => {
+        console.error(err);
 
-      this._snackBar.open('The aircraft models could not be loaded.', '', { duration: 3000 });
-    });
+        this._snackBar.open('The aircraft models could not be loaded.', '', { duration: 3000 });
+      });
   }
 
   save() {
@@ -82,17 +76,11 @@ export class CadastroAeronaveComponent implements OnInit {
       aircraft.maxLandingWeight = this.maxLandingWeight.value;
       aircraft.aircraftModel = this.aircraftModel.value;
 
-      ajax({
-        url: `${environment.baseUrl}/Aeronave`,
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: aircraft
-      })
-        .toPromise()
+      this._aircraftService.add(aircraft)
         .then(() => this._router.navigateByUrl('/'))
         .catch(err => {
           console.error(err);
-          
+
           this._snackBar.open('The aircraft could not be saved.', '', { duration: 3000 })
         })
     }
@@ -107,6 +95,4 @@ export class CadastroAeronaveComponent implements OnInit {
 
     return this.aircraftModels.filter(option => option.code.toLowerCase().indexOf(filterValue) === 0);
   }
-
-
 }

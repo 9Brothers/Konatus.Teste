@@ -38,8 +38,7 @@ namespace Konatus.Teste.Application
 
         public async Task<IEnumerable<Aeronave>> Get(Aeronave entity, int page = 0)
         {
-            if (string.IsNullOrEmpty(entity?.Prefix?.Trim()) || entity.Prefix.Length == 0) throw new Exception("Informe o PREFIX.");
-            else if (entity.Prefix.Length > 6) throw new Exception("Informe um PREFIX com no máximo 6 caracteres");
+            if (entity.Prefix.Length > 6) throw new Exception("Informe um PREFIX com no máximo 6 caracteres");
 
             return await _aeronaveService.Get(entity, page);
         }

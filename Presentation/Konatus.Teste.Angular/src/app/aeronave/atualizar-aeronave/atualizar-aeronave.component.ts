@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, ActivationEnd, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ajax } from 'rxjs/ajax';
 import { startWith, map } from 'rxjs/operators';
+import { AircraftModelService } from 'src/app/services/aircraft-model.service';
+import { AircraftService } from 'src/app/services/aircraft.service';
 import { Aircraft } from 'src/entities/aircraft';
 import { AircraftModel } from 'src/entities/aircraft-model';
 import { environment } from 'src/environments/environment';
@@ -18,6 +19,7 @@ export class AtualizarAeronaveComponent implements OnInit {
 
   aircraftModels: AircraftModel[] = [];
   filteredOptions: Observable<AircraftModel[]>;
+  prefixParam: string = '';
 
   prefix = new FormControl('', [
     Validators.required,
@@ -51,52 +53,40 @@ export class AtualizarAeronaveComponent implements OnInit {
     active: this.active
   });
 
-  constructor(private _router: Router, private _route: ActivatedRoute, private _snackBar: MatSnackBar) { }
+  constructor(private _aircraftService: AircraftService, private _aircraftModelService: AircraftModelService, private _router: Router, private _route: ActivatedRoute, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
 
-    let prefix: string;
-
     this._route.params.subscribe(params => {
-      prefix = params['prefix'];
+      this.prefixParam = params['prefix'];
     });
 
-    ajax({
-      url: `${environment.baseUrl}/ModeloAeronave/All`,
-      method: 'GET',
-      headers: { 'Accept': 'application/json' }
-    })
-    .toPromise()
-    .then(response => {
-      this.aircraftModels = response.response;
+    this._aircraftModelService.getAll()
+      .then(response => {
+        this.aircraftModels = response;
 
-      this.filteredOptions = this.aircraftModel.valueChanges.pipe(
-        startWith(''),
-        map(value => this._filter(value))
-      );
+        this.filteredOptions = this.aircraftModel.valueChanges.pipe(
+          startWith(''),
+          map(value => this._filter(value))
+        );
 
-      return ajax({
-        url: `${environment.baseUrl}/Aeronave?prefix=${prefix}`,
-        method: 'GET',
-        headers: { 'Accept': 'application/json' }
+        return this._aircraftService.get(this.prefixParam);
       })
-      .toPromise();
-    })
-    .then(response => {
+      .then(response => {
 
-      let aeronave = response.response[0] as Aircraft;
+        let aeronave = response[0] as Aircraft;
 
-      this.prefix.setValue(aeronave.prefix);
-      this.aircraftModel.setValue(aeronave.aircraftModel);
-      this.maxDepartureWeight.setValue(aeronave.maxDepartureWeight);
-      this.maxLandingWeight.setValue(aeronave.maxLandingWeight);
-      this.active.setValue(aeronave.active);
-    })
-    .catch(err => {
-      console.error(err);
+        this.prefix.setValue(aeronave.prefix);
+        this.aircraftModel.setValue(aeronave.aircraftModel);
+        this.maxDepartureWeight.setValue(aeronave.maxDepartureWeight);
+        this.maxLandingWeight.setValue(aeronave.maxLandingWeight);
+        this.active.setValue(aeronave.active);
+      })
+      .catch(err => {
+        console.error(err);
 
-      this._snackBar.open('The aircraft could not be loaded.', '', { duration: 3000 });
-    });
+        this._snackBar.open('The aircraft could not be loaded.', '', { duration: 3000 });
+      });
   }
 
   save() {
@@ -109,20 +99,18 @@ export class AtualizarAeronaveComponent implements OnInit {
       aircraft.aircraftModel = this.aircraftModel.value;
       aircraft.active = this.active.value;
 
-      ajax({
-        url: `${environment.baseUrl}/Aeronave`,
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: aircraft
-      })
-        .toPromise()
+      this._aircraftService.update(aircraft)
         .then(() => this._router.navigateByUrl('/'))
         .catch(err => {
-          console.error(err);
           
-          this._snackBar.open('The aircraft could not be updated.', '', { duration: 3000 })
         })
     }
+  }
+
+  delete() {
+    this._aircraftService.delete(this.prefixParam)
+      .then(() => this._router.navigateByUrl('/'))
+      .catch(this.catch);
   }
 
   back() {
@@ -135,5 +123,9 @@ export class AtualizarAeronaveComponent implements OnInit {
     return this.aircraftModels.filter(option => option.code.toLowerCase().indexOf(filterValue) === 0);
   }
 
+  catch = (err) => {
+    console.error(err);
 
+    this._snackBar.open('The aircraft could not be updated.', '', { duration: 3000 });
+  }
 }

@@ -110,6 +110,15 @@
         </div>
       </mat-card-content>
       <mat-card-actions>
+        <div class="btn-actions">
+          <button id="btn-salvar" mat-raised-button color="primary" type="submit">
+            Save
+          </button>
+  
+          <button id="btn-remover" mat-raised-button color="warn" type="button" (click)="delete()">
+            Delete
+          </button>
+        </div>
         <button
           id="btn-voltar"
           mat-button
@@ -118,9 +127,6 @@
           type="button"
         >
           Back
-        </button>
-        <button id="btn-salvar" mat-raised-button color="primary" type="submit">
-          Save
         </button>
       </mat-card-actions>
     </mat-card>

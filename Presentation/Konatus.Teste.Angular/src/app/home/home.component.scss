@@ -1,0 +1,9 @@
+#listar-aeronaves {
+  margin-bottom: 50px;
+}
+
+@media screen and (max-width: 360px) {
+  #listar-aeronaves {
+    margin-bottom: 25px;
+  } 
+}

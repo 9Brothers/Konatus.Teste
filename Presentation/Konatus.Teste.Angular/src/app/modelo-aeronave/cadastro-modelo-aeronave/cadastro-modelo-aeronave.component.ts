@@ -5,6 +5,7 @@ import { AircraftModel } from 'src/entities/aircraft-model';
 import { ajax } from "rxjs/ajax";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { environment } from 'src/environments/environment';
+import { AircraftModelService } from 'src/app/services/aircraft-model.service';
 
 
 @Component({
@@ -43,7 +44,7 @@ export class CadastroModeloAeronaveComponent implements OnInit {
     maxLandingWeight: this.maxLandingWeight
   });
 
-  constructor(private _router: Router, private _snackBar: MatSnackBar) { }
+  constructor(private _aircraftModelService: AircraftModelService, private _router: Router, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -57,13 +58,7 @@ export class CadastroModeloAeronaveComponent implements OnInit {
       aircraftModel.maxDepartureWeight = this.registerAircraftModelFormGroup.get('maxDepartureWeight').value;
       aircraftModel.maxLandingWeight = this.registerAircraftModelFormGroup.get('maxLandingWeight').value;
 
-      ajax({
-        url: `${environment.baseUrl}/ModeloAeronave`,
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: aircraftModel
-      })
-        .toPromise()
+      this._aircraftModelService.add(aircraftModel)
         .then(() => this._router.navigateByUrl('/'))
         .catch(err => this._snackBar.open(err, null, { duration: 3000 }));
     }
