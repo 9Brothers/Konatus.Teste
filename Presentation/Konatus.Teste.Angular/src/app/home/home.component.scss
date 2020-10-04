@@ -1,3 +1,11 @@
+#import-export {
+  .btn-group {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+}
+
 #listar-aeronaves {
   margin-bottom: 50px;
 }
@@ -5,5 +13,5 @@
 @media screen and (max-width: 360px) {
   #listar-aeronaves {
     margin-bottom: 25px;
-  } 
+  }
 }

@@ -3,8 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { AtualizarAeronaveComponent } from './aeronave/atualizar-aeronave/atualizar-aeronave.component';
 import { CadastroAeronaveComponent } from './aeronave/cadastro-aeronave/cadastro-aeronave.component';
 import { HomeComponent } from './home/home.component';
-import { ListarAeronavesComponent } from './home/listar-aeronaves/listar-aeronaves.component';
-import { ListarModelosAeronavesComponent } from './home/listar-modelos-aeronaves/listar-modelos-aeronaves.component';
 import { AtualizarModeloAeronaveComponent } from './modelo-aeronave/atualizar-modelo-aeronave/atualizar-modelo-aeronave.component';
 import { CadastroModeloAeronaveComponent } from './modelo-aeronave/cadastro-modelo-aeronave/cadastro-modelo-aeronave.component';
 

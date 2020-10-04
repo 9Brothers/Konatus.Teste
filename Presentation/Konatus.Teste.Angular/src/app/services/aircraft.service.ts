@@ -26,4 +26,16 @@ export class AircraftService {
   delete(prefix: string) {
     return this._http.delete(`${environment.baseUrl}/Aeronave?prefix=${prefix}`).toPromise();
   }
+
+  import(data: FormData) {
+    return this._http.post(`${environment.baseUrl}/Aeronave/Import`, data
+    // , 
+    // {
+    //   headers: { 
+    //     'Content-Type': 'multipart/form-data',
+    //     'Accept': 'multipart/form-data'
+    //   }
+    // }
+    ).toPromise();
+  }
 }
