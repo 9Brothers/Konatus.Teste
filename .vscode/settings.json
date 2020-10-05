@@ -1,10 +1,12 @@
 {
   "cSpell.words": [
+    "CQRS",
     "Paginator",
     "appsettings",
     "clusterip",
     "devkit",
     "konatus",
+    "kubernetes",
     "mssql",
     "nodeport",
     "spreadsheetml",
