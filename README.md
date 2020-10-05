@@ -61,7 +61,7 @@ Qualquer dúvida, estou disponível pelo (11) 98725-8313
 
 1. Eu usaria o adapter, seguindo a imagem abaixo:
 
-![Exemplo do padrão Adapter](http://www.cs.sjsu.edu/faculty/pearce/modules/patterns/platform/adapter/adapter_files/image002.jpg)
+![Exemplo do padrão Adapter](https://www.programmingwithwolfgang.com/wp-content/uploads/2017/12/Adapter-pattern-UML-diagram-768x568.jpg)
 
 2. Eu configuraria um node **Kubernetes** no qual a porta de entrada estaria uma api em cluster para conseguir atender todas as requisições sem onerar o sistema, enviaria os dados para uma fila, provavelmente um **RabbitMQ** configurado para que os dados sejam *duráveis* e na outra ponta um cluster de **worker services** desenfileirando os dados e processando o mesmo, o problema disso é que possívelmente os dados sairiam da ordem, porém, o trabalho ficaria muito (muito mesmo) mais ágil.
 
