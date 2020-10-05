@@ -54,6 +54,10 @@ Após configurado o minikube, será necessário alterar a string de conexão par
 
     minikube ip
 
+Não se esqueça de executar os em ordem scripts que estão no diretório abaixo:
+
+    /Infrastructure/Konatus.Teste.Infrastructure.SqlServer/SQL/
+
 Qualquer dúvida, estou disponível pelo (11) 98725-8313
 
 ## Teste teórico
